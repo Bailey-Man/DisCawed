@@ -6,15 +6,32 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
+GUILD = os.getenv('DISCORD_GUILD') # is this not needed?
 
 
 # missing 'intents' parameter ?
-myintents = discord.Intents(messages=True, guilds=True, reactions=True, members=True)
-# intents.members = True
+myintents = discord.Intents.default() # (messages=True, guilds=True, reactions=True, members=True)
+myintents.message_content = True
+myintents.members = True
+
+class CustomClient(discord.Client, intents=myintents):
+    async def on_ready(self):
+        print(f'{self.user} has connected to Discord!')
+        # self.intents = myintents
+
+
+
+
+
+
+
+
+        
+
+client = CustomClient()#intents=myintents)
 
 # does ? this work ?? what is commands
-client = discord.Client(intents=myintents)
+# client = discord.Client(intents=myintents)
 print('client intents', client.intents)
 
 
@@ -67,6 +84,7 @@ async def on_message(message):
     if message.content == '!bird':
         response = 'yee caw'
         await message.channel.send(response)
+    print('is it not bird?')
 
 
 

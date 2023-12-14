@@ -2,44 +2,72 @@
 import os
 import random
 import discord
-from dotenv import load_dotenv
 # get bot
 from discord.ext import commands
-
-
-
-
-
-
-
-
-
-
-
+from dotenv import load_dotenv
+import requests
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD') # is this not needed?
-
+APIKEY = os.getenv('STEAM_API_KEY')
 
 myintents = discord.Intents.default()
-# does this cover messages?
 myintents.members = True
 myintents.message_content = True
 
-
-
 bot = commands.Bot(command_prefix='!', intents=myintents) 
 
+### EVENTS ###
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
-# message handler that catches if a string matches 'yee haw'
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.errors.CheckFailure):
+        await ctx.send('you do not have the correct role for this command')
+
+### COMMANDS ###
 @bot.command(name='bird', help='yee caw')
 async def bird(ctx):
     response = 'yee caw'
     await ctx.send(response)
+
+@bot.command(name='lookup', help='lookup a user\'s steamid and return their username and avatar')
+async def lookup_steam_user(steamid):
+    # Make a request to the Steam API to get user information
+    response = requests.get(f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={APIKEY}&steamids={steamid}")
+    
+    if response.status_code == 200:
+        data = response.json()
+        if 'response' in data and 'players' in data['response']:
+            players = data['response']['players']
+            if len(players) > 0:
+                player = players[0]
+                avatar = player.get('avatar', '')
+                username = player.get('personaname', '')
+                return avatar, username
+    
+    return None, None
+
+# Example usage
+steamid = 'YOUR_STEAMID'
+avatar, username = lookup_steam_user(steamid)
+if avatar and username:
+    print(f"Steam User: {username}")
+    print(f"Avatar: {avatar}")
+else:
+    print("Steam user not found.")
+
+@bot.command(name='create-channel', help='create a channel')
+@commands.has_role('admin')
+async def create_channel(ctx, channel_name='general'):
+    guild = ctx.guild
+    existing_channel = discord.utils.get(guild.channels, name=channel_name)
+    if not existing_channel:
+        print('creating a new channel')
+        await guild.create_text_channel(channel_name)
 
 # basic dice roll
 @bot.command(name='roll', help='roll dice in number_of_dice, number_of_sides format!')

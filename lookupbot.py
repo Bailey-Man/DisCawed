@@ -37,7 +37,7 @@ async def on_command_error(ctx, error):
 
 
 ### COMMANDS ###
-@bot.command(name='lookup', help='lookup a user\'s steamid and return their username and avatar')
+@bot.command(name='lookup', help='input username + steamid3 to lookup user information')
 async def lookup_steam_user(ctx, *args):
     ## TODO ##
     # check that user making request has admin role
@@ -58,7 +58,7 @@ async def lookup_steam_user(ctx, *args):
     # Make a request to the Steam API to get user information
     response = requests.get(f"https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={APIKEY}&steamids={steamid64}")
 
-    ## does this work ???????
+    ## TODO ## account for multiple users
     if response.status_code == 200:
         data = response.json()
         print('data', data)
@@ -69,7 +69,15 @@ async def lookup_steam_user(ctx, *args):
                 player = players[0]
                 avatar = player.get('avatar', '')
                 username = player.get('personaname', '')
-                await ctx.send(f'username: {username}, avatar: {avatar}')
+                profileurl = player.get('profileurl', '')
+                timecreated = player.get('timecreated', '')
+                # format time created from unix timestamp to readable date
+                timecreated = helper.convert_unix_timestamp_to_date(timecreated)
+
+
+                lookup_results = f'Results for query: {steamid3} \n username: {username}, \n avatar: {avatar}, \n profileurl: {profileurl}, \n timecreated: {timecreated}'
+
+                await ctx.send(lookup_results)
 
 
 

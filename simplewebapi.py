@@ -16,13 +16,6 @@ STEAM_API_KEY = os.environ.get("STEAM_API_KEY")
 
 
 # does this work?
-def convert_steamid3_to_steamid64(steamid3):
-    # remove the [U:1: prefix and the ] suffix if they exist
-    if type(steamid3) == str:
-        steamid3 = steamid3[5:-1]
-    
-    steamid64 = int(steamid3) + 76561197960265728  # Add the base SteamID64 value
-    return str(steamid64)
 
 convert_test_a = 1603354484
 convert_test_b = 76561199563620212

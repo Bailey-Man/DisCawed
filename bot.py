@@ -30,16 +30,6 @@ async def on_command_error(ctx, error):
 
 
 
-# when another user joins the server, check if they are in the database
-@bot.event
-async def on_member_join(member):
-    # if member in preset list; populate with that
-    # else; diagnose from avatar and username
-    if 
-
-
-
-
 
 ### COMMANDS ###
 @bot.command(name='bird', help='yee caw')

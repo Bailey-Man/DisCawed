@@ -1,0 +1,45 @@
+{
+    "level": 1,
+    "player": "example_player",
+    "icon": "example_icon",
+    "race": "",
+    "class": "",
+    "alignment": "",
+    "background": "",
+    "abilities": {
+        "strength": {
+            "score": 0,
+            "mod": 0
+        },
+        "dexterity": {
+            "score": 0,
+            "mod": 0
+        },
+        "constitution": {
+            "score": 0,
+            "mod": 0
+        },
+        "intelligence": {
+            "score": 0,
+            "mod": 0
+        },
+        "wisdom": {
+            "score": 0,
+            "mod": 0
+        },
+        "charisma": {
+            "score": 0,
+            "mod": 0
+        }
+    },
+    "trained_skills": [],
+    "proficiency": 0,
+    "religion": "",
+    "subclass": "",
+    "speed": 0,
+    "ai_status": "",
+    "adventure_history": [],
+    "equipment": [],
+    "spells": [],
+    "feats": []
+}

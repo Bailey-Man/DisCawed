@@ -5,6 +5,7 @@ import sys
 import datetime
 import discord
 from discord.ext import commands
+import random 
 import requests
 if sys.path.count('src') == 0:
     sys.path.append('src') 
@@ -65,6 +66,13 @@ async def on_member_join(member):
 #     if member in preset_list:
 #         pass
 
+# whenever a message contains the substring 'BUDDY', respond with 'BUDDYY' with 3 times as many Y's as the original message
+@bot.event
+async def on_message(message):
+    if 'BUDDY' in message.content:
+        response = 'BUDDY' + 'Y' * (len(message.content) - 5) 
+        await message.channel.send(response)
+    await bot.process_commands(message)
 
 
 
@@ -111,7 +119,22 @@ async def roll(ctx, *args):
 
 
 
+# ban a randomly selected user from the server
+@bot.command(name='random_ban', help='ban a randomly selected user from the server')
+async def random_ban(ctx):
+    # get the list of members in the server
+    member_list = ctx.guild.members
 
+    # randomly select a member and assert its not the user that called the command
+    member = random.choice(member_list)
+    while member == ctx.author:
+        member = random.choice(member_list)
+    # ban the member    
+    await member.ban()
+    # send a message to the channel that the member was banned
+    await ctx.send(f'{member.name} was banned')
+
+#
 
 
 

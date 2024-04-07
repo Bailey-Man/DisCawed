@@ -67,12 +67,12 @@ async def on_member_join(member):
 #         pass
 
 # whenever a message contains the substring 'BUDDY', respond with 'BUDDYY' with 3 times as many Y's as the original message
-@bot.event
-async def on_message(message):
-    if 'BUDDY' in message.content:
-        response = 'BUDDY' + 'Y' * (len(message.content) - 5) 
-        await message.channel.send(response)
-    await bot.process_commands(message)
+# @bot.event
+# async def on_message(message):
+#     if 'BUDDY' in message.content:
+#         response = 'BUDDY' + 'Y' * (len(message.content) - 5) 
+#         await message.channel.send(response)
+#     await bot.process_commands(message)
 
 
 

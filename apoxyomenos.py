@@ -43,6 +43,7 @@ if __name__ == '__main__':
 
     # page has h1 and h2 tags with links in them; i want to follow those links and create a knowledge graph of pages linked to by these pages to 6 degrees
     
+    # meow
 
     for heading in soup.find_all(heading_tags):
         # get text content of heading

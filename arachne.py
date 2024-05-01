@@ -15,6 +15,49 @@ def main(args):
     
     # specify output path
     output_image_path = ''
+    
+    
+    # use image segmentation to split image into shapes
+    
+    
+    
+    # loop through shapes
+    for shape in image_shapes:
+        
+    
+    
+        # convert shapes into embroidery 'path's by defining 
+        #   - a guideline
+        #   - bezier curves around the shape's perimeter
+        #   - thickness ? check embroidery.py path details
+        
+        
+        
+        # assign color - by shape average color ?? most common color??
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 # script start

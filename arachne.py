@@ -9,6 +9,19 @@ from stitch_generator.functions.functions_1d import constant
 from stitch_generator.shapes.bezier import bezier
 from pyembroidery import EmbPattern, write_png
 
+
+def main(args):
+    # use coloring book conversion to get shapes
+    
+    # convert shapes to center line with bezier
+    
+    # replace shapes with embroidery paths
+    
+    # save image
+    
+    return 
+
+
 def main(args):
     # get image from specified input path
     input_image_path = ''

@@ -6,6 +6,8 @@
 
 ## init
 
+# what is this even for
+# i dont care about cats opinion
 
 
 ## events

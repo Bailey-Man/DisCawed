@@ -289,6 +289,8 @@ class ColorBooked(object):
         temp_outname = 'newimg.jpg'
         outname = temp_outname
         im.save(outname) 
+        print('test')
+        im.show()
 
         #im = Image.open(outname)
         #double_check = np.asarray(im)

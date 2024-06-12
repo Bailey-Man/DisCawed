@@ -11,6 +11,22 @@ from pyembroidery import EmbPattern, write_png
 
 # script start
 
+# divide image into segments
+
+# draw centerline through segments
+
+# bezier curve the 2 edges
+
+# generate embroidery path from shape,direction,width,stroke_alignment
+
+# generate pattern
+
+# write output
+
+
+
+
+
 line_subdivision = add_start(alternate_direction(
     tatami(segment_length=3, steps=5, repetitions=1, minimal_segment_size=2)))
 
